@@ -30,7 +30,11 @@ else:
     in_extension = '.txt'
 out_filename = in_filename.replace('_dump', '')
 out_filename = out_filename.replace(in_extension, '.mongoimport')
-with in_opener(in_filename) as in_file, open(out_filename, 'wt') as out_file:
+
+in_file = in_opener(in_filename)
+
+#with in_opener(in_filename) as in_file, 
+with open(out_filename, 'wt') as out_file:
     for count, line in enumerate(in_file, 1):
         rec_type, key, rev, modified, body = line.split('\t')
         rec = json.loads(body)
